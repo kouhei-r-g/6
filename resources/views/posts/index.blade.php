@@ -36,14 +36,14 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="text-gray-900">
                     <ul>
-                        @foreach ($posts as $post)
+                    @foreach ($posts as $post)
                             <li class="p-4 border-b border-solid border-gray-300">
                                 <div class="flex flex-row justify-between mb-5">
                                     <div class="font-bold">
-                                        {{ $post->user->name }}
+                                        {{ $post->user?->name }}
                                     </div>
                                     <div>
-                                        {{ $post->created_at->format('Y/m/d h:i') }}
+                                        {{ $post->created_at?->format('Y/m/d h:i') }}
                                     </div>
                                 </div>
                                 <div class="flex flex-row justify-between">
@@ -51,7 +51,7 @@
                                         {{ $post->body }}
                                     </div>
                                     <div>
-                                        @if($post->user->id === Auth::id())
+                                        @if($post->user?->id === Auth::id())
                                             <form method="POST" action="/posts/{{ $post->id }}">
                                                 @csrf
                                                 @method('DELETE')
